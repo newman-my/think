@@ -1,0 +1,98 @@
+---------------------------------------------------------------
+[ 2019-09-17T10:13:30+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/index/test
+[运行时间：0.045949s] [吞吐率：21.76req/s] [内存消耗：241.89kb] [文件加载：40]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'dnt' => '1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Test->index[ D:\www\think\application\index\controller\Test.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/index\view\test\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-09-17T10:13:43+08:00 ] 0.0.0.0 GET localhost/think/public/index.php/index/Product_controller
+[运行时间：3.525211s] [吞吐率：0.28req/s] [内存消耗：6,763.72kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'Product_controller',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'dnt' => '1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\ProductController->index[ D:\www\think\application\index\controller\ProductController.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/index\view\product_controller\index.html [ array (
+  0 => 'products',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013133s ] mysql:host=192.168.0.8;port=3306;dbname=oyh_drp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `product` [ RunTime:0.018543s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `product` LIMIT 1 [ RunTime:0.202746s ]
+[ sql ] [ SQL ] SELECT * FROM `product` LIMIT 0,500 [ RunTime:0.059232s ]
+---------------------------------------------------------------
+[ 2019-09-17T10:13:43+08:00 ] 0.0.0.0 GET localhost/think/public/index.php/index/app/index/static/bootstrap-3.3.7-dist/css/bootstrap.min.css
+[运行时间：0.022520s] [吞吐率：44.40req/s] [内存消耗：216.89kb] [文件加载：36]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'app',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+  'accept' => 'text/css,*/*;q=0.1',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'dnt' => '1',
+  'connection' => 'keep-alive',
+  'referer' => 'http://localhost/think/public/index.php/index/Product_controller',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+  'static' => 'bootstrap-3.3.7-dist',
+  'css' => 'bootstrap.min.css',
+)
+[ info ] [ LOG ] INIT File

@@ -1,0 +1,61 @@
+{layout name="layout" /}
+<div class="row main-wrap">
+<div class="col-md-10 col-md-offset-1">
+<table>
+<table class="table">
+    <caption class="text-center">仓库发货信息表</caption>
+	<thead>
+	  <tr>
+	    <th>仓库编码</th>
+	    <th>仓库名称</th>
+	    <th>货运部名称</th>
+	    <th>结算单价</th>
+		<th>发货单价</th>
+	  </tr>
+	</thead>
+	<tbody id="sdata">
+	 {volist id='shop' name='shop' key='key'}
+	  <tr>
+	   	<td>{$shop['code']}</td>
+		<td>{$shop['name']}</td>
+	  <td>
+		<select>
+		{foreach $unit as $k=>$v}
+		 <option value="{$v['wl_code']}">{$v['name']}</option>
+		{/foreach}
+		</select>
+		</td>
+		<td class="checkNum" contenteditable="true"></td>
+		<td class="checkNum" contenteditable="true"></td>
+		<td><a class="save btn btn-primary" href="#">保存</a></td>
+	  </tr>
+	{/volist}
+	<script>
+	 $(function(){
+	   $(".save").click(function(){
+	    var obj=$(this).parent().prevAll();
+		var jsPrice=$(obj[1]).text();
+		var fhPrice=$(obj[0]).text();
+		 if (jsPrice==0||fhPrice==0){
+		    alert("单价不能为零");
+		 }
+	   });
+	 $(".checkNum").keypress(function(event) { 
+         var keyCode = event.which;
+         if (keyCode == 46 || (keyCode >= 48 && keyCode <=57)) return true;
+         else return false; 
+        }).focus(function() { 
+                this.style.imeMode='disabled'; 
+        });     
+	 });
+	
+	</script>
+	
+	  
+	</tbody>
+	<tfooter>
+	</tfooter>
+  </table>
+</table>
+</div>
+</div>

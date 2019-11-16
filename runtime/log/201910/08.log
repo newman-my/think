@@ -1,0 +1,28 @@
+---------------------------------------------------------------
+[ 2019-10-08T16:44:54+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/test
+[运行时间：0.064961s] [吞吐率：15.39req/s] [内存消耗：241.10kb] [文件加载：40]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'test',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Test->index[ D:\www\think\application\oyh\controller\Test.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\test\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File

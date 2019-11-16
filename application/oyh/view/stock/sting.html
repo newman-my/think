@@ -1,0 +1,66 @@
+{layout name="layout" /}
+<div class="row main-wrap">
+<div class="col-md-10 col-md-offset-1">
+<table class="table">
+    <caption class="text-center">仓库发货信息表</caption>
+	<thead>
+	  <tr>
+	    <th>仓库编码</th>
+	    <th>仓库名称</th>
+	    <th>货运部名称</th>
+	    <th>结算单价</th>
+		<th>发货单价</th>
+	  </tr>
+	</thead>
+	<tbody id="sdata">
+	 {volist id='shop' name='shop' key='key'}
+	  <tr>
+	   	<td>{$shop['code']}</td>
+		<td>{$shop['name']}</td>
+	  <td>
+		<select>
+		{foreach $unit as $k=>$v}
+		 <option value="{$v['wl_code']}">{$v['name']}</option>
+		{/foreach}
+		</select>
+		</td>
+		<td><input type="text" class="checkNum" /></td>
+		<td><input type="text" class="checkNum" /></td>
+		<td><a class="save btn btn-primary" href="#">保存</a></td>
+	  </tr>
+	{/volist}
+	<script>
+	 $(function(){
+	   $(".save").click(function(){
+	    var obj=$(this).parent().prevAll();
+		var jsPrice=Number($(obj[1]).children().first().val());
+		var fhPrice=Number($(obj[0]).children().first().val());
+		if (jsPrice<fhPrice||jsPrice==''||fhPrice==''){
+		  alert("结算单价不能小于发货单价！");
+		 }else{
+		  var code=$(obj[4]).text();
+		  var wlCode=$(obj[2]).children().find("option:selected").val();
+		  var name=$(obj[3]).text();
+		  var mydata={code:code,name:name,wlCode:wlCode,jsPrice:jsPrice,fhPrice:fhPrice,}
+		   $.post("add",mydata,function(data,status){
+		    alert("Data: " + data);
+		   });
+		 }
+	    });
+	 $(".checkNum").keypress(function(event) { 
+	     var keyCode = event.which;
+		 if (keyCode == 46 || (keyCode >= 48 && keyCode <=57)) return true;
+         else return false; 
+		 }).focus(function() { 
+            this.style.imeMode='disabled';  
+            this.style.background="#ff0000";		
+        });
+	 });
+	</script>
+	</tbody>
+	<tfooter>
+	<a href="{:url('index')}" class="btn btn-primary">返回</a>
+	</tfooter>
+  </table>
+</div>
+</div>

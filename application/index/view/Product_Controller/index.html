@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>OUYIHAM ERP二次系统</title>
+<meta charset="utf-8">
+<link href="app\index\static\bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>ouyihan erp二次系统</h1>
+<table>
+<tr>
+<td>商品名称</td>
+<td>商品编码</td>
+<td>供应商名称</td>
+<td>规格</td>
+<td>中包规格</td>
+<td>商品路径</td>
+</tr>
+{volist name="products" id="product" key="key"}
+<tr>
+<td>{$product->getData('name') }</td>
+<td>{$product->getData('code') }</td>
+<td>{$product->getData('main_supplier_name') }</td>
+<td>{$product->getData('model') }</td>
+<td>{$product->getData('spec') }</td>
+<td>{$product->getData('paths') }</td>
+</tr>
+{/volist}
+</table>
+{$products->render()}
+</body>
+</html>

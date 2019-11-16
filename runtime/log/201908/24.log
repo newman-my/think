@@ -1,0 +1,4 @@
+---------------------------------------------------------------
+[ 2019-08-24T11:40:23+08:00 ] 0.0.0.0 GET localhost/think/public/
+[ sql ] [ DB ] CONNECT:[ UseTime:0.018980s ] mysql:host=127.0.0.1;dbname=;charset=utf8
+[ error ] [10501]SQLSTATE[3D000]: Invalid catalog name: 1046 No database selected

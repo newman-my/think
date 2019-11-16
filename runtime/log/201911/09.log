@@ -1,0 +1,1220 @@
+---------------------------------------------------------------
+[ 2019-11-09T10:59:25+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/sting.html
+[运行时间：2.819596s] [吞吐率：0.35req/s] [内存消耗：416.63kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'sting',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'dnt' => '1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->sting[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\sting.html [ array (
+  0 => 'shop',
+  1 => 'unit',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029676s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select code,name from v_shop where (select count(1) from wl_info where v_shop.code=wl_info.code)=0 [ RunTime:0.042216s ]
+[ sql ] [ SQL ] select wl_code,name from v_wl_unit where name<>'Otest' [ RunTime:0.003845s ]
+---------------------------------------------------------------
+[ 2019-11-09T13:43:18+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/home/index
+[运行时间：0.042360s] [吞吐率：23.61req/s] [内存消耗：241.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'home',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Home->index[ D:\www\think\application\oyh\controller\Home.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\home\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-09T13:43:22+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.091397s] [吞吐率：10.94req/s] [内存消耗：434.02kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.030091s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'dt_pos' in 'field list'[D:\www\think\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-11-09T13:45:19+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.052991s] [吞吐率：18.87req/s] [内存消耗：433.53kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.023116s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'bill_index.code' in 'field list'[D:\www\think\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-11-09T16:35:45+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/home/index
+[运行时间：0.018756s] [吞吐率：53.32req/s] [内存消耗：241.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'home',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Home->index[ D:\www\think\application\oyh\controller\Home.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\home\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-09T16:35:47+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.026962s] [吞吐率：37.09req/s] [内存消耗：229.41kb] [文件加载：42]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$stock' (T_VARIABLE)[D:\www\think\application\oyh\model\StockModel.php:24]
+---------------------------------------------------------------
+[ 2019-11-09T16:38:12+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.013245s] [吞吐率：75.50req/s] [内存消耗：229.03kb] [文件加载：42]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$stock' (T_VARIABLE)[D:\www\think\application\oyh\model\StockModel.php:24]
+---------------------------------------------------------------
+[ 2019-11-09T16:40:00+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/home/index
+[运行时间：0.008900s] [吞吐率：112.36req/s] [内存消耗：241.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'home',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Home->index[ D:\www\think\application\oyh\controller\Home.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\home\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-09T16:40:02+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.007041s] [吞吐率：142.03req/s] [内存消耗：229.41kb] [文件加载：42]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$stock' (T_VARIABLE)[D:\www\think\application\oyh\model\StockModel.php:24]
+---------------------------------------------------------------
+[ 2019-11-09T16:41:44+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：2.019445s] [吞吐率：0.50req/s] [内存消耗：545.38kb] [文件加载：52]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.033527s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-25' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-1' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.968834s ]
+[ error ] [2]A non-numeric value encountered[D:\www\think\application\oyh\controller\Stock.php:17]
+---------------------------------------------------------------
+[ 2019-11-09T16:44:26+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.632433s] [吞吐率：0.61req/s] [内存消耗：480.52kb] [文件加载：51]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.028770s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-25' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-1' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.572495s ]
+[ error ] [0]致命错误: Call to undefined function app\oyh\controller\val()[D:\www\think\application\oyh\controller\Stock.php:17]
+---------------------------------------------------------------
+[ 2019-11-09T16:45:34+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.499165s] [吞吐率：0.67req/s] [内存消耗：511.13kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.016299s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-25' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-1' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.470863s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:45:55+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.843406s] [吞吐率：0.54req/s] [内存消耗：457.24kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-09',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012758s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-25' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-1' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.815133s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:48:14+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.580317s] [吞吐率：0.63req/s] [内存消耗：440.72kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-09',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.021984s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-09' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-09' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.542198s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:48:45+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.415716s] [吞吐率：0.71req/s] [内存消耗：440.14kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.022848s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.384454s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:48:49+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.405462s] [吞吐率：0.71req/s] [内存消耗：440.14kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.017798s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.379088s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:48:55+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.460255s] [吞吐率：0.68req/s] [内存消耗：440.14kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029744s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.419128s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:56:03+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.077076s] [吞吐率：0.93req/s] [内存消耗：450.97kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012927s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.039590s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:56:08+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/sting.html
+[运行时间：0.067048s] [吞吐率：14.91req/s] [内存消耗：416.23kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'sting',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->sting[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\sting.html [ array (
+  0 => 'shop',
+  1 => 'unit',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004564s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select code,name from v_shop where (select count(1) from wl_info where v_shop.code=wl_info.code)=0 [ RunTime:0.038307s ]
+[ sql ] [ SQL ] select wl_code,name from v_wl_unit where name<>'Otest' [ RunTime:0.007500s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:56:13+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.134113s] [吞吐率：0.88req/s] [内存消耗：449.89kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/sting.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002649s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.122386s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:56:30+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.058329s] [吞吐率：0.94req/s] [内存消耗：440.14kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009645s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.039715s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:58:52+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/sting.html
+[运行时间：0.066883s] [吞吐率：14.95req/s] [内存消耗：416.23kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'sting',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->sting[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\sting.html [ array (
+  0 => 'shop',
+  1 => 'unit',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.020868s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select code,name from v_shop where (select count(1) from wl_info where v_shop.code=wl_info.code)=0 [ RunTime:0.026763s ]
+[ sql ] [ SQL ] select wl_code,name from v_wl_unit where name<>'Otest' [ RunTime:0.002551s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:58:57+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.655629s] [吞吐率：0.60req/s] [内存消耗：453.83kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/sting.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010855s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.625156s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:59:08+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.492239s] [吞吐率：0.67req/s] [内存消耗：441.88kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015935s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.467783s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:59:12+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.443258s] [吞吐率：0.69req/s] [内存消耗：441.88kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003163s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.430595s ]
+---------------------------------------------------------------
+[ 2019-11-09T16:59:31+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/test
+[运行时间：0.016294s] [吞吐率：61.37req/s] [内存消耗：215.86kb] [文件加载：36]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'test',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'dnt' => '1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-09T17:00:33+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.352656s] [吞吐率：0.74req/s] [内存消耗：445.73kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-07',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003508s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-02' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-07' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.340454s ]
+---------------------------------------------------------------
+[ 2019-11-09T17:00:43+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.445501s] [吞吐率：0.69req/s] [内存消耗：459.57kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-01',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015429s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-27' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-01' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.415659s ]
+---------------------------------------------------------------
+[ 2019-11-09T17:00:58+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.345186s] [吞吐率：0.74req/s] [内存消耗：459.57kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-01',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007744s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-27' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-01' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.322099s ]
+---------------------------------------------------------------
+[ 2019-11-09T17:00:59+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.148489s] [吞吐率：0.87req/s] [内存消耗：459.57kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-01',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005291s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-10-27' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-01' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.126666s ]
+---------------------------------------------------------------
+[ 2019-11-09T17:01:06+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：1.081886s] [吞吐率：0.92req/s] [内存消耗：441.88kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-08',
+  'endstart' => '2019-11-10',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.018290s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-03' and '2019-11-10' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-08' and '2019-11-10' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.054376s ]

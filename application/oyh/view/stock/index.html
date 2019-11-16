@@ -1,0 +1,196 @@
+{layout name="layout" /}
+<div class="row main-wrap">
+<div class="col-sm-2">
+   <form role="form">
+     <div class="panel panel-default">
+	    <div class="panel-heading">
+    	  <label class="panel-title">选择开始日期</label>
+		</div>
+	  <div class="panel-body">
+	  <div class="input-group date" id="datetimepicker1">
+	    <input type="text" class="form-control">
+	    <span class="input-group-addon">
+		<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+	  </div>
+	  </div>
+	 </div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <label class="panel-title">选择结束日期</label>
+	  </div>
+	  <div class="panel-body">
+       <div class="input-group date" id="datetimepicker2">
+	    <input type="text" id="start" class="form-control">
+	    <span class="input-group-addon">
+		<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+	   </div>
+	  </div>
+	  <div class="panel-footer">
+	    <button type="button" id="fh_query" class="btn btn-primary">系统装箱查询</button>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	   <div class="panel-heading">
+    	  <label class="panel-title">发货处理</label>
+		</div>
+	  <div class="panel-body">
+	   <a id="sting" class="btn btn-primary" href="{:url('outGoods')}"> 选 择 发 货 </a>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	   <div class="panel-heading">
+    	  <label class="panel-title">系统设置</label>
+		</div>
+	  <div class="panel-body">
+	   <a id="sting" class="btn btn-primary" href="{:url('sting')}">发货信息设置</a>
+	 </div>
+	</div>
+   </form>
+  </div>
+  <script>
+$(function(){
+   var d=new Date();
+   d.setTime(d.getTime()-24*60*60*1000);
+ $("#datetimepicker1").datetimepicker({
+    format:"YYYY-MM-DD",
+	locale:moment.locale("zh-cn"),
+	defaultDate:d
+  });
+ 
+ $("#datetimepicker2").datetimepicker({
+    format:"YYYY-MM-DD",
+	locale:moment.locale("zh-cn"),
+	defaultDate:new Date()
+ });
+});
+$(function(){
+	  $("#fh_query").click(function(){
+		var starDate=$("#datetimepicker1").find("input").val();
+	   	var endDate=$("#datetimepicker2").find("input").val();
+		 $.post("{:url('fh_query')}",
+           {
+            start : starDate,
+            endstart : endDate,
+            },
+          function(data,status){
+		    var str="";
+			var sumsbox=0;
+			var sumvolume=0.00;
+			var sumamt=0;
+		    for (var i=0;i<data.length;i++){
+			    str +="<tr><td>"+(data[i]['code'])+"</td>";
+				str +="<td>"+(data[i]['fh_date'])+"</td>";
+				str +="<td>"+(data[i]['scode'])+"</td>";
+				str +="<td>"+(data[i]['name'])+"</td>";
+				str +="<td>"+(data[i]['sbox'])+"</td>";
+				str +="<td>"+(data[i]['volume'])+"</td>";
+				if(data[i]['amt']){
+				str +="<td>"+(data[i]['amt'])+"</td></tr>";
+				}else{
+				str +="<td>"+"</td></tr>";
+				}
+				sumsbox+=parseInt(data[i]['sbox']);
+				sumvolume+=parseFloat(data[i]['volume'],4);
+				if(data[i]['amt']){
+				sumamt+=parseFloat(data[i]['amt']);
+				}
+			  } 
+			   $("#sdata").html(str);
+			   $("#sumbox").text(sumsbox);
+			   $("#sumvol").text(sumvolume);
+			   $("#sumamt").text(sumamt);
+			 });
+		  });
+   });
+</script>
+<div class="col-md-10">
+  <table class="table">
+    <caption class="text-center">系装箱验货汇总表</caption>
+	<thead>
+	  <tr>
+	    <th>单据编号</th>
+	    <th>扫货日期</th>
+		<th>仓库编码</th>
+	    <th>入库仓库</th>
+	    <th>装箱数量</th>
+	    <th>装箱体积</th>
+	    <th>装箱金额</th>
+	  </tr>
+	</thead>
+	<tbody id="sdata">
+	 {volist name="deliver" id="deliver" key="key"}
+	  <tr>
+	    <td>{$deliver['code']}</td>
+		<td>{$deliver['fh_date']}</td>
+		<td>{$deliver['scode']}</td>
+		<td>{$deliver['name']}</td>
+		<td>{$deliver['sbox']}</td>
+		<td>{$deliver['volume']}</td>
+		<td>{$deliver['amt']}</td>
+	  </tr>
+	 {/volist}
+	</tbody>
+	<tfooter>
+	  <td><button type="button" class="btn btn-primary" id="saveErp">保存</button></td>
+	  <td colspan="3">合计</td>
+	  <td id="sumbox">{$sumrelt['box']}</td>
+	  <td id="sumvol">{$sumrelt['volume']}</td>
+	  <td id="sumamt">{$sumrelt['amt']}</td>
+	</tfooter>
+  </table>
+  <script>
+    $(function(){
+	$("#saveErp").click(function(){
+	  var data=[];
+	  var bj=true;
+	  var obj=$("#sdata").children();
+	       $.each(obj,function(index,item){
+		    var b=$(item).children();
+			if(b[5].innerHTML/b[4].innerHTML>0.1){
+			  if(confirm(b[0].innerHTML+" 体积异常,点击（确定）请重新检查，点（取消）将忽略!")){
+			    $(b[5]).attr("contenteditable",true);
+			    $(b[5]).focus();
+				bj=false;
+                return false;
+			   }
+		  }
+		  if(b[6].innerHTML==''){
+		   data[index]={
+		    'dh':b[0].innerHTML,
+			'sh_date':b[1].innerHTML,
+			'ck_bm':b[2].innerHTML,
+			'ck_name':b[3].innerHTML,
+			'box_num':b[4].innerHTML,
+			'tj':b[5].innerHTML,
+			'je':0
+		   }
+		   }else{
+		   data[index]={
+		    'dh':b[0].innerHTML,
+			'sh_date':b[1].innerHTML,
+			'ck_bm':b[2].innerHTML,
+			'ck_name':b[3].innerHTML,
+			'box_num':b[4].innerHTML,
+			'tj':b[5].innerHTML,
+			'je':b[6].innerHTML
+		   }
+		   }
+		 });
+		 if(bj){
+		 $.post('addWldj',{'data':data},function(data,status){
+		    if(status=='success'){
+			 alert('保存成功！');
+			 window.location.reload();
+			}else{
+			 alert('保存失败！');
+			}
+		
+		 });
+		}
+	});
+ });
+  </script>
+</div>
+</div>

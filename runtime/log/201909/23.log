@@ -1,0 +1,28 @@
+---------------------------------------------------------------
+[ 2019-09-23T09:10:48+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/login_controller/
+[运行时间：0.057262s] [吞吐率：17.46req/s] [内存消耗：241.91kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'login_controller',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\LoginController->index[ D:\www\think\application\oyh\controller\LoginController.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\login_controller\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File

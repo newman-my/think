@@ -1,0 +1,10 @@
+.navbar-nav>li{
+	width:120px;
+}
+.main-wrap{
+	margin-top:60px;
+}
+.checkNum{
+	ime-mode:disabled;
+	background-color:blue;
+}
