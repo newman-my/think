@@ -78,6 +78,19 @@ class Stock extends Controller{
 	   
 	}
 	public function outgoods(){
+	  $mydata=StockModel::getOutgoods();
+	  $data=[];
+	  
+	  foreach($mydata as $v){
+		  if(!in_array($v['货运部名称'],$data)){
+			array_push($data,$v['货运部名称']);
+		  }
+		  
+	  }
+	  $v="okok";
+	  $this->assign('v',$v);
+	  $this->assign('data',$data);
+	  $this->assign('mydata',$mydata);
 	  return $this->fetch();
 	}
 }

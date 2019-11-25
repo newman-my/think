@@ -11,7 +11,7 @@ class StockModel extends Model{
 		$sdt=date("Y-m-d",$dtstdate);
 		$str="select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
  (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
- scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ scode,bill_date, max(box)as sbox,round(sum(box_volume),4) as volume,
  sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
 (select id,code,in_wh_code,cust_code,bill_date from bill_index
  where bill_date between '".$sdt."' and '".$endDate."' 
@@ -53,12 +53,13 @@ class StockModel extends Model{
 	}
 	static public function getOutgoods(){
 		$str="select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
-		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		round(体积*发货单价,2) as 运费 from (select id,stock_code,code as 单号,box as 件数,round(volume,4) as 体积
 		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
 		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
 		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
 		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
 		on a.stock_code=b.仓库编码 order by 货运部名称 desc";
+		return Db::query($str);
 	}
 	
 }

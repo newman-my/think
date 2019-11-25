@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:59:"D:\www\think\public/../application/oyh\view\home\index.html";i:1570602398;s:45:"D:\www\think\application\oyh\view\layout.html";i:1570609351;s:52:"D:\www\think\application\oyh\view\public\header.html";i:1570608788;s:52:"D:\www\think\application\oyh\view\public\footer.html";i:1570860720;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:59:"D:\www\think\public/../application/oyh\view\home\index.html";i:1570602398;s:45:"D:\www\think\application\oyh\view\layout.html";i:1570609351;s:52:"D:\www\think\application\oyh\view\public\header.html";i:1570608788;s:52:"D:\www\think\application\oyh\view\public\footer.html";i:1573884428;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -41,7 +41,7 @@
  </nav>
 
 
-<footer class="navbar-bottom">
+<footer class="navbar-fixed-bottom">
  <div class="text-center">
    <p>浙ICP备17018962号</p>
    <p>©CopyRight 2019-2019 OUYIHAN.COM Inc All Rights Reserved. 义乌兴霆商贸有限公司 版权所有</p>

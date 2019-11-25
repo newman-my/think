@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:63:"D:\www\think\public/../application/oyh\view\stock\outgoods.html";i:1573888346;s:45:"D:\www\think\application\oyh\view\layout.html";i:1570609351;s:52:"D:\www\think\application\oyh\view\public\header.html";i:1570608788;s:52:"D:\www\think\application\oyh\view\public\footer.html";i:1573884428;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:63:"D:\www\think\public/../application/oyh\view\stock\outgoods.html";i:1574395997;s:45:"D:\www\think\application\oyh\view\layout.html";i:1570609351;s:52:"D:\www\think\application\oyh\view\public\header.html";i:1570608788;s:52:"D:\www\think\application\oyh\view\public\footer.html";i:1573884428;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -48,11 +48,11 @@
 		  <label>选择物流单位</label>
 		</div>
 		<div class="panel-body">
-		  <select>
-		    <option>金典物流</option>
-			<option>荣兴物流</option>
-			<option>俊发货运部</option>
-		  <select>
+		  <select onchange="selchang()">
+		   <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): if( count($data)==0 ) : echo "" ;else: foreach($data as $key=>$vo): ?>
+		    <option value="<?php echo $vo; ?>"><?php echo $vo; ?></option>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
+		  </select>
 		</div>
 		<div class="panel-body">
 		  <button class="btn btn-primary">出库单据查询</button>
@@ -66,7 +66,48 @@
 	 </div>
   </div>
   <div class="col-md-10">
+    <table class="table">
+	  <thead>
+	    <tr>
+		  <th>单号</th>
+		  <th>门店编码</th>
+		  <th>门店名称</th>
+		  <th>收货人</th>
+		  <th>电话</th>
+		  <th>货运部名称</th>
+		  <th>货运部编码</th>
+		  <th>件数</th>
+		  <th>体积</th>
+		  <th>单价</th>
+		  <th>运费</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	   <?php if(is_array($mydata) || $mydata instanceof \think\Collection || $mydata instanceof \think\Paginator): $key = 0; $__LIST__ = $mydata;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$mydata): $mod = ($key % 2 );++$key;?>
+	    <tr>
+	    	<td width="120px"><?php echo $mydata['单号']; ?></td>
+	    	<td><?php echo $mydata['仓库编码']; ?></td>
+	    	<td><?php echo $mydata['仓库名称']; ?></td>
+	    	<td><?php echo $mydata['收货人']; ?></td>
+	    	<td><?php echo $mydata['电话']; ?></td>
+	    	<td><?php echo $mydata['货运部名称']; ?></td>
+	    	<td><?php echo $mydata['货运部编码']; ?></td>
+	    	<td><?php echo $mydata['件数']; ?></td>
+	    	<td><?php echo $mydata['体积']; ?></td>
+	    	<td><?php echo $mydata['发货单价']; ?></td>
+	    	<td><?php echo $mydata['运费']; ?></td>
+	    </tr>
+		<?php endforeach; endif; else: echo "" ;endif; ?>
+	  </tbody>
+	
+	</table>
   </div>
+  <script>
+    function selchang(){
+	 var value=$('select').val();
+	 alert(value);
+	}
+  </script>
 </div>
 <footer class="navbar-fixed-bottom">
  <div class="text-center">

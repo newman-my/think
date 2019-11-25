@@ -1,0 +1,2954 @@
+---------------------------------------------------------------
+[ 2019-11-21T09:16:47+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/home/index
+[运行时间：0.051551s] [吞吐率：19.40req/s] [内存消耗：241.79kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'home',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Home->index[ D:\www\think\application\oyh\controller\Home.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\home\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-21T09:16:52+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.898739s] [吞吐率：0.53req/s] [内存消耗：443.28kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.079836s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.792131s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:17:39+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/addWldj
+[运行时间：0.083569s] [吞吐率：11.97req/s] [内存消耗：409.87kb] [文件加载：51]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'addWldj',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '3109',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'data' => 
+  array (
+    0 => 
+    array (
+      'dh' => 'FT-1911-0035',
+      'sh_date' => '2019-11-20 17:22:10',
+      'ck_bm' => '3013',
+      'ck_name' => '芜湖燕雅加盟一店（三山）',
+      'box_num' => '1',
+      'tj' => '0.1911',
+      'je' => '2858.50',
+    ),
+    1 => 
+    array (
+      'dh' => 'FT-1911-0034',
+      'sh_date' => '2019-11-20 17:22:00',
+      'ck_bm' => '3013',
+      'ck_name' => '芜湖燕雅加盟一店（三山）',
+      'box_num' => '4',
+      'tj' => '0.204435',
+      'je' => '3284.40',
+    ),
+    2 => 
+    array (
+      'dh' => 'DBT-1911-0123',
+      'sh_date' => '2019-11-20 16:28:27',
+      'ck_bm' => '6069',
+      'ck_name' => '西安讴忆韩二店（西咸吾悦）',
+      'box_num' => '13',
+      'tj' => '0.286836',
+      'je' => '0',
+    ),
+    3 => 
+    array (
+      'dh' => 'DBT-1911-0125',
+      'sh_date' => '2019-11-20 16:23:23',
+      'ck_bm' => '6063',
+      'ck_name' => '兰州讴忆韩四店（东欧）',
+      'box_num' => '5',
+      'tj' => '0.286836',
+      'je' => '0',
+    ),
+    4 => 
+    array (
+      'dh' => 'DBT-1911-0118',
+      'sh_date' => '2019-11-20 16:13:58',
+      'ck_bm' => '6062',
+      'ck_name' => '兰州讴忆韩三店（兰州中心）',
+      'box_num' => '15',
+      'tj' => '0.286836',
+      'je' => '0',
+    ),
+    5 => 
+    array (
+      'dh' => 'DBT-1911-0122',
+      'sh_date' => '2019-11-20 16:06:02',
+      'ck_bm' => '6013',
+      'ck_name' => '嘉峪关燕雅二店',
+      'box_num' => '9',
+      'tj' => '0.27692',
+      'je' => '0',
+    ),
+    6 => 
+    array (
+      'dh' => 'ZS-1911-0053',
+      'sh_date' => '2019-11-20 16:05:25',
+      'ck_bm' => '6013',
+      'ck_name' => '嘉峪关燕雅二店',
+      'box_num' => '1',
+      'tj' => '0.046575',
+      'je' => '0',
+    ),
+    7 => 
+    array (
+      'dh' => 'DBT-1911-0112',
+      'sh_date' => '2019-11-20 14:06:45',
+      'ck_bm' => '6017',
+      'ck_name' => '嘉峪关讴忆韩一店',
+      'box_num' => '9',
+      'tj' => '0.1911',
+      'je' => '0',
+    ),
+    8 => 
+    array (
+      'dh' => 'DBT-1911-0124',
+      'sh_date' => '2019-11-20 14:04:44',
+      'ck_bm' => '6002',
+      'ck_name' => '兰州讴忆韩五店（西固店）',
+      'box_num' => '7',
+      'tj' => '0.305368',
+      'je' => '0',
+    ),
+    9 => 
+    array (
+      'dh' => 'DBT-1911-0121',
+      'sh_date' => '2019-11-20 13:55:34',
+      'ck_bm' => '6070',
+      'ck_name' => '鄂尔多斯万达讴忆韩一店',
+      'box_num' => '15',
+      'tj' => '0.31968',
+      'je' => '0',
+    ),
+  ),
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->addWldj[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011444s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `fh_wait` [ RunTime:0.034086s ]
+[ sql ] [ SQL ] INSERT INTO `fh_wait` (`code` , `sh_date` , `stock_code` , `box` , `volume` , `amt` , `status`) VALUES ( 'FT-1911-0035','2019-11-20 17:22:10','3013','1','0.1911','2858.50',0 ) , ( 'FT-1911-0034','2019-11-20 17:22:00','3013','4','0.204435','3284.40',0 ) , ( 'DBT-1911-0123','2019-11-20 16:28:27','6069','13','0.286836','0',0 ) , ( 'DBT-1911-0125','2019-11-20 16:23:23','6063','5','0.286836','0',0 ) , ( 'DBT-1911-0118','2019-11-20 16:13:58','6062','15','0.286836','0',0 ) , ( 'DBT-1911-0122','2019-11-20 16:06:02','6013','9','0.27692','0',0 ) , ( 'ZS-1911-0053','2019-11-20 16:05:25','6013','1','0.046575','0',0 ) , ( 'DBT-1911-0112','2019-11-20 14:06:45','6017','9','0.1911','0',0 ) , ( 'DBT-1911-0124','2019-11-20 14:04:44','6002','7','0.305368','0',0 ) , ( 'DBT-1911-0121','2019-11-20 13:55:34','6070','15','0.31968','0',0 ) [ RunTime:0.019004s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:17:41+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.368596s] [吞吐率：2.71req/s] [内存消耗：435.29kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011352s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:0.342496s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:18:01+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.008114s] [吞吐率：123.24req/s] [内存消耗：242.91kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-21T09:40:28+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：7.272375s] [吞吐率：0.14req/s] [内存消耗：424.72kb] [文件加载：48]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011365s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.081160s ]
+[ error ] [0]致命错误: Call to undefined method app\oyh\controller\Stock::assing()[D:\www\think\application\oyh\controller\Stock.php:82]
+---------------------------------------------------------------
+[ 2019-11-21T09:41:27+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.050754s] [吞吐率：19.70req/s] [内存消耗：474.94kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011191s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.016560s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:41:53+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.271373s] [吞吐率：3.68req/s] [内存消耗：479.36kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005977s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.030312s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:42:39+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.024871s] [吞吐率：40.21req/s] [内存消耗：479.86kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005856s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.005868s ]
+---------------------------------------------------------------
+[ 2019-11-21T09:57:54+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.018326s] [吞吐率：54.57req/s] [内存消耗：214.57kb] [文件加载：35]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$this' (T_VARIABLE)[D:\www\think\application\oyh\controller\Stock.php:83]
+---------------------------------------------------------------
+[ 2019-11-21T09:58:50+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.006988s] [吞吐率：143.10req/s] [内存消耗：214.57kb] [文件加载：35]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$this' (T_VARIABLE)[D:\www\think\application\oyh\controller\Stock.php:83]
+---------------------------------------------------------------
+[ 2019-11-21T12:11:38+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/home/index
+[运行时间：0.028833s] [吞吐率：34.68req/s] [内存消耗：241.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'home',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Home->index[ D:\www\think\application\oyh\controller\Home.php ]
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\home\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-21T12:11:41+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.614590s] [吞吐率：1.63req/s] [内存消耗：435.98kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/home/index',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.054829s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:0.531639s ]
+---------------------------------------------------------------
+[ 2019-11-21T12:11:44+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.064343s] [吞吐率：15.54req/s] [内存消耗：425.45kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029831s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.017710s ]
+[ error ] [2]in_array() expects parameter 2 to be array, string given[D:\www\think\application\oyh\controller\Stock.php:85]
+---------------------------------------------------------------
+[ 2019-11-21T12:14:27+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.062496s] [吞吐率：16.00req/s] [内存消耗：426.02kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.031948s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.016657s ]
+[ error ] [2]in_array() expects parameter 2 to be array, string given[D:\www\think\application\oyh\controller\Stock.php:85]
+---------------------------------------------------------------
+[ 2019-11-21T12:18:25+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.087761s] [吞吐率：11.39req/s] [内存消耗：438.73kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012841s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.035454s ]
+[ error ] [2]Illegal string offset 'name'[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:53]
+---------------------------------------------------------------
+[ 2019-11-21T12:24:21+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.039795s] [吞吐率：25.13req/s] [内存消耗：446.90kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015996s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.007161s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:00:10+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.088650s] [吞吐率：11.28req/s] [内存消耗：465.76kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.027469s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.038466s ]
+[ error ] [8]Array to string conversion[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:71]
+---------------------------------------------------------------
+[ 2019-11-21T13:01:46+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html+
+[运行时间：0.010431s] [吞吐率：95.87req/s] [内存消耗：227.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods.html+',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-21T13:02:17+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.056392s] [吞吐率：17.73req/s] [内存消耗：475.76kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.033926s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.009903s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:03:03+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.031158s] [吞吐率：32.09req/s] [内存消耗：475.76kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010651s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.008725s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:03:23+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.032919s] [吞吐率：30.38req/s] [内存消耗：474.76kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009252s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.011793s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:04:21+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.028437s] [吞吐率：35.17req/s] [内存消耗：475.26kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004327s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.011451s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:04:24+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.031389s] [吞吐率：31.86req/s] [内存消耗：467.24kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003102s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.013239s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:06:01+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.062278s] [吞吐率：16.06req/s] [内存消耗：475.26kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015101s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.022836s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:08:12+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.030799s] [吞吐率：32.47req/s] [内存消耗：475.26kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007736s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.007786s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:12:23+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.060249s] [吞吐率：16.60req/s] [内存消耗：476.09kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.023701s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.007913s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:13:13+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.044002s] [吞吐率：22.73req/s] [内存消耗：476.09kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.017898s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.012396s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:13:19+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.042456s] [吞吐率：23.55req/s] [内存消耗：468.08kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.021217s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.007612s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:13:35+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.027293s] [吞吐率：36.64req/s] [内存消耗：476.09kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'data',
+  1 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.008495s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.005592s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:35:42+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.030078s] [吞吐率：33.25req/s] [内存消耗：215.28kb] [文件加载：35]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [0]语法解析错误: syntax error, unexpected '$this' (T_VARIABLE)[D:\www\think\application\oyh\controller\Stock.php:91]
+---------------------------------------------------------------
+[ 2019-11-21T13:36:04+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.071184s] [吞吐率：14.05req/s] [内存消耗：476.20kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.023451s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.027273s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:37:17+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.048562s] [吞吐率：20.59req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012970s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006313s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:38:23+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.056856s] [吞吐率：17.59req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029952s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.011513s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:38:49+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.042512s] [吞吐率：23.52req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.019086s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.011985s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:39:05+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.027745s] [吞吐率：36.04req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003864s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.012642s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:39:36+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.020034s] [吞吐率：49.91req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003333s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006048s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:41:04+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.040211s] [吞吐率：24.87req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009601s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.017558s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:41:49+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.032222s] [吞吐率：31.03req/s] [内存消耗：475.63kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003999s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.017736s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:42:32+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.040566s] [吞吐率：24.65req/s] [内存消耗：476.13kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010957s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.017533s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:44:05+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.056270s] [吞吐率：17.77req/s] [内存消耗：466.05kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.017901s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.012519s ]
+[ error ] [8]Array to string conversion[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:71]
+---------------------------------------------------------------
+[ 2019-11-21T13:45:31+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.048907s] [吞吐率：20.45req/s] [内存消耗：466.05kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011211s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.018308s ]
+[ error ] [8]Array to string conversion[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:71]
+---------------------------------------------------------------
+[ 2019-11-21T13:49:38+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.049403s] [吞吐率：20.24req/s] [内存消耗：466.05kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.023238s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.008177s ]
+[ error ] [8]Array to string conversion[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:71]
+---------------------------------------------------------------
+[ 2019-11-21T13:49:58+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.049447s] [吞吐率：20.22req/s] [内存消耗：466.05kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.022599s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.007683s ]
+[ error ] [8]Array to string conversion[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:71]
+---------------------------------------------------------------
+[ 2019-11-21T13:52:45+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.041773s] [吞吐率：23.94req/s] [内存消耗：509.50kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.017408s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006463s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:53:28+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.035099s] [吞吐率：28.49req/s] [内存消耗：509.50kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015804s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006405s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:54:10+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.035119s] [吞吐率：28.47req/s] [内存消耗：509.50kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.006504s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.015888s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:54:29+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.025644s] [吞吐率：39.00req/s] [内存消耗：509.50kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004781s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.008280s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:04:21+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.317841s] [吞吐率：0.76req/s] [内存消耗：441.44kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/outgoods.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.076049s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.223013s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:04:28+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/addWldj
+[运行时间：0.094583s] [吞吐率：10.57req/s] [内存消耗：404.49kb] [文件加载：51]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'addWldj',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '2309',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'data' => 
+  array (
+    0 => 
+    array (
+      'dh' => 'DBT-1911-0128',
+      'sh_date' => '2019-11-21 11:50:39',
+      'ck_bm' => '6071',
+      'ck_name' => '西夏万达讴忆韩一店',
+      'box_num' => '7',
+      'tj' => '0.302744',
+      'je' => '0',
+    ),
+    1 => 
+    array (
+      'dh' => 'DBT-1911-0129',
+      'sh_date' => '2019-11-21 11:49:12',
+      'ck_bm' => '6060',
+      'ck_name' => '西峰讴忆韩一店',
+      'box_num' => '11',
+      'tj' => '0.30345',
+      'je' => '0',
+    ),
+    2 => 
+    array (
+      'dh' => 'FT-1911-0038',
+      'sh_date' => '2019-11-21 11:48:01',
+      'ck_bm' => '6014',
+      'ck_name' => '民乐讴忆韩加盟一店',
+      'box_num' => '3',
+      'tj' => '0.143',
+      'je' => '6741.28',
+    ),
+    3 => 
+    array (
+      'dh' => 'DBT-1911-0102',
+      'sh_date' => '2019-11-21 10:25:10',
+      'ck_bm' => '6067',
+      'ck_name' => '西峰讴忆韩二店',
+      'box_num' => '8',
+      'tj' => '0.222938',
+      'je' => '0',
+    ),
+    4 => 
+    array (
+      'dh' => 'DBT-1911-0111',
+      'sh_date' => '2019-11-21 10:17:25',
+      'ck_bm' => '6073',
+      'ck_name' => '宝鸡吾悦讴忆韩一店',
+      'box_num' => '10',
+      'tj' => '0.305368',
+      'je' => '0',
+    ),
+    5 => 
+    array (
+      'dh' => 'DBT-1911-0113',
+      'sh_date' => '2019-11-21 10:08:00',
+      'ck_bm' => '6028',
+      'ck_name' => '武威讴忆韩五店',
+      'box_num' => '15',
+      'tj' => '0.32868',
+      'je' => '0',
+    ),
+    6 => 
+    array (
+      'dh' => 'DBT-1911-0130',
+      'sh_date' => '2019-11-21 10:01:35',
+      'ck_bm' => '6061',
+      'ck_name' => '榆林讴忆韩加盟一店',
+      'box_num' => '10',
+      'tj' => '0.222938',
+      'je' => '0',
+    ),
+    7 => 
+    array (
+      'dh' => 'DBT-1911-0119',
+      'sh_date' => '2019-11-21 08:00:18',
+      'ck_bm' => '6072',
+      'ck_name' => '格尔木讴忆韩一店',
+      'box_num' => '10',
+      'tj' => '0.260542',
+      'je' => '0',
+    ),
+  ),
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->addWldj[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.028935s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `fh_wait` [ RunTime:0.043744s ]
+[ sql ] [ SQL ] INSERT INTO `fh_wait` (`code` , `sh_date` , `stock_code` , `box` , `volume` , `amt` , `status`) VALUES ( 'DBT-1911-0128','2019-11-21 11:50:39','6071','7','0.302744','0',0 ) , ( 'DBT-1911-0129','2019-11-21 11:49:12','6060','11','0.30345','0',0 ) , ( 'FT-1911-0038','2019-11-21 11:48:01','6014','3','0.143','6741.28',0 ) , ( 'DBT-1911-0102','2019-11-21 10:25:10','6067','8','0.222938','0',0 ) , ( 'DBT-1911-0111','2019-11-21 10:17:25','6073','10','0.305368','0',0 ) , ( 'DBT-1911-0113','2019-11-21 10:08:00','6028','15','0.32868','0',0 ) , ( 'DBT-1911-0130','2019-11-21 10:01:35','6061','10','0.222938','0',0 ) , ( 'DBT-1911-0119','2019-11-21 08:00:18','6072','10','0.260542','0',0 ) [ RunTime:0.006818s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:04:30+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.181171s] [吞吐率：0.85req/s] [内存消耗：435.29kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/outgoods.html',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012515s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.160610s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:36:25+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.033080s] [吞吐率：0.97req/s] [内存消耗：434.27kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.006677s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.001489s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:36:36+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：0.191374s] [吞吐率：5.23req/s] [内存消耗：434.11kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-20',
+  'endstart' => '2019-11-21',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012510s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-21' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-21' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:0.170203s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:36:38+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.091460s] [吞吐率：10.93req/s] [内存消耗：478.17kb] [文件加载：51]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011570s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.057414s ]
+[ error ] [8]未定义数组索引: id[D:\www\think\thinkphp\library\think\template\taglib\Cx.php:84]
+---------------------------------------------------------------
+[ 2019-11-21T14:41:26+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.035600s] [吞吐率：28.09req/s] [内存消耗：482.73kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010947s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006598s ]
+[ error ] [8]未定义数组索引: 单号[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:88]
+---------------------------------------------------------------
+[ 2019-11-21T14:42:39+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.031789s] [吞吐率：31.46req/s] [内存消耗：482.73kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012330s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.005848s ]
+[ error ] [8]未定义数组索引: 单号[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:88]
+---------------------------------------------------------------
+[ 2019-11-21T14:45:22+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.063342s] [吞吐率：15.79req/s] [内存消耗：482.73kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.021990s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.015811s ]
+[ error ] [8]未定义数组索引: 单价[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:97]
+---------------------------------------------------------------
+[ 2019-11-21T14:54:22+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.057090s] [吞吐率：17.52req/s] [内存消耗：482.73kb] [文件加载：53]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.022145s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.012714s ]
+[ error ] [8]未定义数组索引: 单价[D:\www\think\runtime\temp\8f08016cb8e8f267f651145230b5fa2c.php:97]
+---------------------------------------------------------------
+[ 2019-11-21T14:55:32+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.039554s] [吞吐率：25.28req/s] [内存消耗：521.30kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012014s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.016572s ]
+---------------------------------------------------------------
+[ 2019-11-21T14:57:54+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.040675s] [吞吐率：24.59req/s] [内存消耗：521.30kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013214s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		体积*发货单价 as 运费 from (select id,stock_code,code as 单号,box as 件数,volume as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.012415s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:04:06+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.035611s] [吞吐率：28.08req/s] [内存消耗：495.85kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003430s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		round(体积*发货单价,2) as 运费 from (select id,stock_code,code as 单号,box as 件数,round(volume,4) as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.008096s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:05:08+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.045540s] [吞吐率：21.96req/s] [内存消耗：521.66kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012100s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		round(体积*发货单价,2) as 运费 from (select id,stock_code,code as 单号,box as 件数,round(volume,4) as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.016051s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:06:29+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.031363s] [吞吐率：31.88req/s] [内存消耗：521.66kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011358s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		round(体积*发货单价,2) as 运费 from (select id,stock_code,code as 单号,box as 件数,round(volume,4) as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.006064s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:14:13+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：0.973735s] [吞吐率：1.03req/s] [内存消耗：434.90kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/outgoods.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.021612s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:0.937882s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:14:18+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/sting.html
+[运行时间：0.040823s] [吞吐率：24.50req/s] [内存消耗：416.70kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'sting',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->sting[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\sting.html [ array (
+  0 => 'shop',
+  1 => 'unit',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011684s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select code,name from v_shop where (select count(1) from wl_info where v_shop.code=wl_info.code)=0 [ RunTime:0.014431s ]
+[ sql ] [ SQL ] select wl_code,name from v_wl_unit where name<>'Otest' [ RunTime:0.002839s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:14:29+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.025110s] [吞吐率：0.98req/s] [内存消耗：434.90kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/sting.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013312s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.000277s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:15:25+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/sting.html
+[运行时间：0.051145s] [吞吐率：19.55req/s] [内存消耗：416.70kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'sting',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->sting[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\sting.html [ array (
+  0 => 'shop',
+  1 => 'unit',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011936s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select code,name from v_shop where (select count(1) from wl_info where v_shop.code=wl_info.code)=0 [ RunTime:0.025840s ]
+[ sql ] [ SQL ] select wl_code,name from v_wl_unit where name<>'Otest' [ RunTime:0.002151s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:15:42+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/index.html
+[运行时间：1.071826s] [吞吐率：0.93req/s] [内存消耗：434.90kb] [文件加载：50]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/sting.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->index[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\index.html [ array (
+  0 => 'deliver',
+  1 => 'sumrelt',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012419s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-22' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-22' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:1.050410s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:22:37+08:00 ] 192.168.0.70 POST 192.168.0.70/think/public/index.php/oyh/stock/fh_query.html
+[运行时间：0.122858s] [吞吐率：8.14req/s] [内存消耗：434.11kb] [文件加载：49]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'fh_query',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '36',
+  'origin' => 'http://192.168.0.70',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+)
+[ info ] [ PARAM ] array (
+  'start' => '2019-11-20',
+  'endstart' => '2019-11-21',
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->fh_query[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011802s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select b.code as code,fhdate as fh_date,b.scode as scode,name,sbox,volume,amt from 
+ (select a.code as code,concat(ifnull(in_wh_code,''),ifnull(cust_code,''))as 
+ scode,bill_date, max(box)as sbox,max(box_volume) as volume,
+ sum(product_bill.qty)as sqty,ifnull(sum(net_amount),'') as amt,max(fh_date) as fhdate from
+(select id,code,in_wh_code,cust_code,bill_date from bill_index
+ where bill_date between '2019-11-15' and '2019-11-21' 
+ and bill_type in ('MOVE_NOTE','SO2','ZENG_SONG'))a inner join
+ product_bill on a.id=product_bill.bill_index_id inner join 
+ product_bill_box on product_bill.id=product_bill_box.product_bill_id
+ group by a.code having fhdate between '2019-11-20' and '2019-11-21' order by fhdate desc)b
+ inner join (select warehouse_code,warehouse_name as name from stock group by warehouse_code)c on
+ b.scode=c.warehouse_code where (select count(1) from fh_wait where b.code=fh_wait.code)=0 [ RunTime:0.098993s ]
+---------------------------------------------------------------
+[ 2019-11-21T15:22:49+08:00 ] 192.168.0.70 GET 192.168.0.70/think/public/index.php/oyh/stock/outgoods.html
+[运行时间：0.043760s] [吞吐率：22.85req/s] [内存消耗：496.40kb] [文件加载：47]
+[ info ] [ LANG ] D:\www\think\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'oyh',
+    1 => 'stock',
+    2 => 'outgoods',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '192.168.0.70',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'referer' => 'http://192.168.0.70/think/public/index.php/oyh/stock/index.html',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\oyh\controller\Stock->outgoods[ D:\www\think\application\oyh\controller\Stock.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\www\think\public/../application/oyh\view\stock\outgoods.html [ array (
+  0 => 'v',
+  1 => 'data',
+  2 => 'mydata',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.008066s ] mysql:host=192.168.0.118;port=3306;dbname=erp_sync;charset=utf8
+[ sql ] [ SQL ] select id,单号,仓库编码,仓库名称,收货人,电话,货运部名称,货运部编码,件数,体积,发货单价,
+		round(体积*发货单价,2) as 运费 from (select id,stock_code,code as 单号,box as 件数,round(volume,4) as 体积
+		from fh_wait where status=0) a inner join (select v_shop.code as 仓库编码,v_shop.name as 仓库名称,
+		v_shop.contact_person as 收货人,v_shop.contact_mobile as 电话,wl_info.fh_price as 发货单价,
+		v_wl_unit.name as 货运部名称,v_wl_unit.wl_code as 货运部编码 from v_shop inner join wl_info
+		on v_shop.code=wl_info.code inner join v_wl_unit on wl_info.wl_code=v_wl_unit.wl_code)b 
+		on a.stock_code=b.仓库编码 order by 货运部名称 desc [ RunTime:0.023429s ]

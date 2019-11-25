@@ -6,11 +6,11 @@
 		  <label>选择物流单位</label>
 		</div>
 		<div class="panel-body">
-		  <select>
-		    <option>金典物流</option>
-			<option>荣兴物流</option>
-			<option>俊发货运部</option>
-		  <select>
+		  <select onchange="selchang()">
+		   {foreach name='data' item='vo'}
+		    <option value="{$vo}">{$vo}</option>
+			{/foreach}
+		  </select>
 		</div>
 		<div class="panel-body">
 		  <button class="btn btn-primary">出库单据查询</button>
@@ -24,5 +24,46 @@
 	 </div>
   </div>
   <div class="col-md-10">
+    <table class="table">
+	  <thead>
+	    <tr>
+		  <th>单号</th>
+		  <th>门店编码</th>
+		  <th>门店名称</th>
+		  <th>收货人</th>
+		  <th>电话</th>
+		  <th>货运部名称</th>
+		  <th>货运部编码</th>
+		  <th>件数</th>
+		  <th>体积</th>
+		  <th>单价</th>
+		  <th>运费</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	   {volist id='mydata' name='mydata' key='key'}
+	    <tr>
+	    	<td width="120px">{$mydata['单号']}</td>
+	    	<td>{$mydata['仓库编码']}</td>
+	    	<td>{$mydata['仓库名称']}</td>
+	    	<td>{$mydata['收货人']}</td>
+	    	<td>{$mydata['电话']}</td>
+	    	<td>{$mydata['货运部名称']}</td>
+	    	<td>{$mydata['货运部编码']}</td>
+	    	<td>{$mydata['件数']}</td>
+	    	<td>{$mydata['体积']}</td>
+	    	<td>{$mydata['发货单价']}</td>
+	    	<td>{$mydata['运费']}</td>
+	    </tr>
+		{/volist}
+	  </tbody>
+	
+	</table>
   </div>
+  <script>
+    function selchang(){
+	 var value=$('select').val();
+	 alert(value);
+	}
+  </script>
 </div>
